@@ -14,20 +14,7 @@ app.get('/', (req, res) => {
 
 app.use('/webstore/products', tasks)
 
-
-// app.get('/login', (req, res) => {
-//     res.send('Login Page')
-// })
-
-// app.get('/store', (req, res) => {
-//     res.send('Brands (with brandId): ')
-// })
-
-// app.get('/store/:brandId', (req, res) => {
-//     res.send('All Items')
-// })
-
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 4000
 
 const start = async () => {
     try {
