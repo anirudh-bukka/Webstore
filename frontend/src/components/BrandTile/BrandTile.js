@@ -3,8 +3,8 @@ import './BrandTile.css'
 const BrandTile = () => {
     return (
         <div className='BrandTile'>
-            <h3>Product Name</h3>
-            <p>Product Description</p>
+            <h3>Brand Name</h3>
+            <p>Brand Description</p>
         </div>
     )
 }
