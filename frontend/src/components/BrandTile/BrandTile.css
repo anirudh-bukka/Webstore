@@ -1,0 +1,9 @@
+.ProductTile {
+    border: 1px black;
+    border-style: solid;
+    border-radius: 10px;
+    max-width: 32.5em;
+    text-align: left;
+    padding: 10px;
+    margin: auto;
+}
