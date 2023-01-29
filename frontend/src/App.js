@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Route } from "react-router-dom";
-import Home from './Components/Home/Home';
-import Login from './Components/Login/Login';
+import Home from './Pages/Home/Home';
+import Login from './Pages/Login/Login';
 import Navbar from './Components/Navbar/Navbar'
 
 function App() {
@@ -9,8 +9,8 @@ function App() {
     <div className="App">
       <Navbar />
       <BrowserRouter>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/webstore" component={Home} />
+          <Route exact path="/webstore/login" component={Login} />
       </BrowserRouter>
     </div>
   );
