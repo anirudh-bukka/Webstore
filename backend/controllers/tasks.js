@@ -11,10 +11,10 @@ const getAllBrands = asyncWrapper(async (req, res) => {
 })
 
 const getOneBrand = asyncWrapper(async (req, res) => {
-    const { brandName } = req.body
-    const product = await Store.findOne({ brandName })
+    const { id: brandId } = req.params
+    const product = await Store.findOne({ _id: brandId })
     if(!product) {
-        return res.status(404).json({ msg: `No Brand called: ${ brandName }` })
+        return res.status(404).json({ msg: `No Brand with id: ${ brandId }` })
     }
     res.status(200).json({ product })
 })
@@ -22,8 +22,8 @@ const getOneBrand = asyncWrapper(async (req, res) => {
 const getOneItem = asyncWrapper( async(req, res) => {
     // res.send('Get One item')
     // res.json({ id: req.params.id })
-    const { itemName } = req.body
-    const item = await Store.findOne({ itemName })
+    const { id: itemId } = req.params
+    const item = await Store.findOne({ _id: itemId })
     if(!item) {
         return res.status(404).json({ msg: `No item called: ${ itemName }` })
     }
@@ -37,39 +37,39 @@ const addItem = asyncWrapper( async (req, res) => {
 })
 
 const updateItem = asyncWrapper( async (req, res) => {
-    const { itemName: itemName } = req.body
-    const item = await Store.findOneAndUpdate({ itemName }, req.body, { new: true, runValidators: true })
+    const { id: itemId } = req.params
+    const item = await Store.findOneAndUpdate({ _id: itemId }, req.body, { new: true, runValidators: true })
     if(!item) {
         return res.status(404).json({ msg: `No item: ${ itemName } to update.` })
     }
-    res.status(200).json({ itemName: itemName, data: req.body })
+    res.status(200).json({ id: itemId, data: req.body })
 })
 
 const updateBrand = asyncWrapper( async (req, res) => {
-    const { brandName: brandName } = req.body
-    const brand = await Store.findOneAndUpdate({ brandName }, req.body, { new: true, runValidators: true })
+    const { id: brandId } = req.params
+    const brand = await Store.findOneAndUpdate({ _id: brandId }, req.body, { new: true, runValidators: true })
     if(!brand) {
         return res.status(404).json({ msg: `No brand: ${ brandName } to update.` })
     }
-    res.status(200).json({ itemName: itemName, data: req.body })
+    res.status(200).json({ id: brandId, data: req.body })
 })
 
 const deleteItem = asyncWrapper( async (req, res) => {
-    const { itemName: itemName } = req.body
-    const item = await Store.findOneAndDelete({ itemName })
+    const { id: itemId } = req.params
+    const item = await Store.findOneAndDelete({ _id: itemId })
     if(!item) {
-        res.status(404).json({ msg: `No item: ${itemName} to delete.` })
+        return res.status(404).json({ msg: `No item: ${itemId} to delete.` })
     }
-    res.status(200).json({ itemName })
+    res.status(200).json({ itemId })
 })
 
 const deleteBrand = asyncWrapper( async (req, res) => {
-    const { brandName: brandName } = req.params
-    const brand = await Store.findOneAndDelete({ brandName })
+    const { id: brandId } = req.params
+    const brand = await Store.findOneAndDelete({ _id: brandId })
     if(!brand) {
-        res.status(404).json({ msg: `No brand: ${brandName} to delete.` })
+        return res.status(404).json({ msg: `No brand: ${brandId} to delete.` })
     }
-    res.status(200).json({ brandName })
+    res.status(200).json({ brandId })
 })
 
 module.exports = { getAllBrands, getOneBrand, getOneItem, addItem, updateItem, updateBrand, deleteItem, deleteBrand }
