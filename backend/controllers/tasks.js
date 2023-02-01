@@ -36,23 +36,32 @@ const addItem = asyncWrapper( async (req, res) => {
     res.status(201).json({ product })
 })
 
-const updateItem = asyncWrapper( async (req, res) => {
-    const { id: itemId } = req.params
-    const item = await Store.findOneAndUpdate({ _id: itemId }, req.body, { new: true, runValidators: true })
-    if(!item) {
-        return res.status(404).json({ msg: `No item: ${ itemName } to update.` })
-    }
-    res.status(200).json({ id: itemId, data: req.body })
-})
+// const updateItem = asyncWrapper( async (req, res) => {
+//     const { id: itemId } = req.params
+//     const item = await Store.findOneAndUpdate({ _id: itemId }, req.body, { new: true, runValidators: true })
+//     if(!item) {
+//         return res.status(404).json({ msg: `No item: ${ itemName } to update.` })
+//     }
+//     res.status(200).json({ id: itemId, data: req.body })
+// })
+const updateItem = async (req, res) => {
+    try {
+        const {id: taskId} = req.params
+        const item = await Store.findOneAndUpdate({ _id: taskId }, req.body, { new: true, runValidators:true })
+        res.status(200).json({ id: taskId, data:req.body })
+    } catch(error) {
 
-const updateBrand = asyncWrapper( async (req, res) => {
-    const { id: brandId } = req.params
-    const brand = await Store.findOneAndUpdate({ _id: brandId }, req.body, { new: true, runValidators: true })
-    if(!brand) {
-        return res.status(404).json({ msg: `No brand: ${ brandName } to update.` })
     }
-    res.status(200).json({ id: brandId, data: req.body })
-})
+}
+
+// const updateBrand = asyncWrapper( async (req, res) => {
+//     const { id: brandId } = req.params
+//     const brand = await Store.findOneAndUpdate({ _id: brandId }, req.body, { new: true, runValidators: true })
+//     if(!brand) {
+//         return res.status(404).json({ msg: `No brand: ${ brandName } to update.` })
+//     }
+//     res.status(200).json({ id: brandId, data: req.body })
+// })
 
 const deleteItem = asyncWrapper( async (req, res) => {
     const { id: itemId } = req.params
@@ -72,4 +81,4 @@ const deleteBrand = asyncWrapper( async (req, res) => {
     res.status(200).json({ brandId })
 })
 
-module.exports = { getAllBrands, getOneBrand, getOneItem, addItem, updateItem, updateBrand, deleteItem, deleteBrand }
+module.exports = { getAllBrands, getOneBrand, getOneItem, addItem, updateItem, deleteItem, deleteBrand }

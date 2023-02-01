@@ -21,6 +21,12 @@ const StoreSchema = new mongoose.Schema({
         trim: true,
         maxlength: [100, 'Description cannot exceed 100 words.']
     },
+    brandDesc: {
+        type: String,
+        required: [true, 'Must provide a description'],
+        trim: true,
+        maxlength: [100, 'Description cannot exceed 100 words.']
+    },
     price: {
         type: Number,
         required: [true, 'Must provide MRP.'],
