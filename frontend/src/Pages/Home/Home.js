@@ -1,9 +1,11 @@
-import React from "react";
+import { React } from "react";
 import loopPic from "../../Assets/full-loop.jpg"
 import "./Home.css"
 import BrandTile from "../../Components/BrandTile/BrandTile";
+// import { useParams, Link } from 'react-router-dom';
 
 const Home = () => {
+
     return (
         <div className="Home">
             <div className="left-container">
